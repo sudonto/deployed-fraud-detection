@@ -1,0 +1,54 @@
+# ---------------------------------------------------------------------------
+# Research environment for the two banking papers.
+#
+# PyTorch is NOT listed here because the CUDA build must come from the
+# PyTorch index, and which build depends on the card.
+#
+#   RTX 40-series (sm_89) and newer, driver >= 525:
+#     pip install torch --index-url https://download.pytorch.org/whl/cu124
+#
+#   Pascal cards such as the GTX 1050 (sm_61), which CUDA 12.x wheels no
+#   longer ship kernels for:
+#     pip install torch==2.5.1+cu118 --index-url https://download.pytorch.org/whl/cu118
+#
+#   No GPU:
+#     pip install torch --index-url https://download.pytorch.org/whl/cpu
+# ---------------------------------------------------------------------------
+
+# Core scientific stack. numpy is held below 2.0 because pytorch-tabnet and
+# shap still ship extensions compiled against the 1.x ABI.
+numpy>=1.26,<2.0
+pandas>=2.1
+scipy>=1.11
+scikit-learn>=1.5,<1.8
+
+# Gradient boosting machines used as the ML half of every hybrid model.
+xgboost>=2.0
+lightgbm>=4.3
+catboost>=1.2
+
+# Resampling operators that the TASR module builds on.
+imbalanced-learn>=0.13
+
+# Deep tabular baseline (vanilla TabNet reference implementation).
+pytorch-tabnet>=4.1
+
+# Hyperparameter optimisation and interpretability.
+optuna>=3.6
+shap>=0.45
+
+# Statistical testing for the model comparison tables.
+scikit-posthocs>=0.9
+
+# Dataset access.
+openml>=0.14
+
+# Plotting and reporting.
+matplotlib>=3.8
+seaborn>=0.13
+tabulate>=0.9
+
+# Utilities.
+tqdm>=4.66
+PyYAML>=6.0
+joblib>=1.3
